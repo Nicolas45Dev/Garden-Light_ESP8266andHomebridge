@@ -10,7 +10,7 @@ In my case, I use the leds to create garden lights.
 ## Installation on Raspberry
 
 Before you install plugin make sure you have a raspberry running on the homebridge image.
-You can find more details on hoqw to burn the image on the website. https://github.com/homebridge/homebridge
+You can find more details on how to burn the image to your raspberry on their website. https://github.com/homebridge/homebridge
 
 Once your raspberry pi is ready, you want to install homebridge
 
@@ -121,9 +121,9 @@ Instagram:  @dimension.3dprint
 ## Contributing
 
 1. Fork it (https://github.com/Nicolas45Dev/Garden-Light_ESP8266andHomebridge)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
+2. Create your feature branch (`git checkout -b feature/featureName`)
+3. Commit your changes (`git commit -am 'Add some featureName'`)
+4. Push to the branch (`git push origin feature/featureName`)
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
