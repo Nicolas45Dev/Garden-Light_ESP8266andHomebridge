@@ -11,5 +11,5 @@ the transistors you are using can handle the current of the strip. My strip uses
 
 
 ## About the Sketch
-In the sketch, there is a function named OpenSide() that controls the treansistion between the actual color and the new color to be set. You can adjust the duration of the effect by changing the EffectDuration variable.
-Everything else should quite enough easy to understand the code isn't that big. So keep exploring and have fun.
+In the sketch, there is a function named OpenSide() that controls the transistion between the actual color and the new color to be set. You can adjust the duration of the effect by changing the EffectDuration variable.
+Everything else should be quite easy to understand, the code isn't that big. So keep exploring and have fun.
