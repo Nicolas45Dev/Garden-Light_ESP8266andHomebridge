@@ -96,7 +96,7 @@ IPAddress subnet(255, 255, 255, 0); // Subnet mask
 In order to connect the ESP8266 to internet, you need to replace the Xs and Ys with your router's id and password.
 You also need to know the ip of your router. You can find that information on the configuration page of the router.
 Next, you fix the ip address for your device. In the example it would be 234.124.0.32. If you don't fix a ip address to your device,
-his address could if a black out occur and may cause some problem with homebridge. So with a fix address, the device will always be at the same address.
+the address could change if a black out occur and may cause some problem with homebridge. So with a fix address, the device will always be at the same address.
 
 Next, you can upload the file to your ESP8266. Don't forget to change all the lines in the config file of homebrige with the ESP6266's ip address.
 You wiil get errors if you don't change it. Once the change the file, save it and restart the server.
