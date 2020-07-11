@@ -4,8 +4,8 @@ The circuit to build is quite simple. The ESP8266 has diffrent pins that offer P
 
 ![](ESP8266pin.jpg)
 
-This example show you how to  hook up the controller. For the ESP8266, I use the pins 12, 14 and 15. They can all be control with PWN. In case, I use NPN transistors, because they are most simple to use than PNP. Make sure
-the transistors you aure using can handle the current of the strip. My strip uses 500 mA per channel for each light. So, I took three BUT92 transistor, because they can handle 60 amp @ 250V. I can add a lot of lights before having a problem.
+This example show you how to  hook up the controller. For the ESP8266, I use the pins 12, 14 and 15. They can all be control with PWN. In case, I use NPN transistors, because they are easier to use than PNP. Make sure
+the transistors you are using can handle the current of the strip. My strip uses 500 mA per channel for each unit and I built 7 of them. So, I took three BUT92 transistors, because they can handle 60 amp @ 250V. I can add a lot of lights before having a problem.
 
 ![](Circuit.png)
 
