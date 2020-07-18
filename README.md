@@ -1,9 +1,9 @@
 # Garden-Light with ESP8266 and Homebridge
-> This projet able you to control led strip with an ESP8266 via Homebridge.
+> This project enable you to control led strip with an ESP8266 via Homebridge.
 
 
-The projet explain how to use an ESP8266 and homebridge to control RGB strips using the plugin Better-RGB-Http
-In my case, I use the leds to create garden lights.
+The project explains how to use an ESP8266 and homebridge to control RGB strips using the plugin Better-RGB-Http
+In my case, I use the LEDs to create garden lights.
 
 ![](Light1.png)
 
@@ -17,7 +17,7 @@ Once your raspberry pi is ready, you want to install homebridge
 ```sh
 sudo npm install -g --unsafe-perm homebridge
 ```
-Next, install the plugin for the RGB leds.
+Next, install the plugin for the RGB LEDs.
 
 ```sh
 npm install -g homebridge-better-http-rgb
@@ -28,7 +28,7 @@ Just use the cd command and open the file with nano command.
 cd /var/lib/homebridge
 sudo nano config.json
 ```
-The file should look like this, unless you already add accesories. 
+The file should look like this unless you already add accesories. 
 ```sh
 {
     "bridge": {
@@ -74,7 +74,7 @@ We will later change the ESP8266's ip. For now you can save the file.
 
 ## Installation on ESP8266
 
-Using the Arduino IDE, install the ESP8266 board manger, To do so, open the preference menu in file > Preference.
+Using the Arduino IDE, install the ESP8266 board manager, To do so, open the preference menu in file > Preference.
 Beside the "Additional Boards Manager URLS" enter this URL : 
 ```sh
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
@@ -93,16 +93,16 @@ IPAddress gateway(234, 124, 0, 1); // Your router IP
 IPAddress subnet(255, 255, 255, 0); // Subnet mask
 ``` 
 
-In order to connect the ESP8266 to internet, you need to replace the Xs and Ys with your router's id and password.
+In order to connect the ESP8266 to the internet, you need to replace the Xs and Ys with your router's id and password.
 You also need to know the ip of your router. You can find that information on the configuration page of the router.
 Next, you fix the ip address for your device. In the example it would be 234.124.0.32. If you don't fix a ip address to your device,
-the address could change if a black out occur and may cause some problem with homebridge. So with a fix address, the device will always be at the same address.
+the address could change if a black out occurs and may cause some problem with homebridge. So with a fix address, the device will always be at the same address.
 
 Next, you can upload the file to your ESP8266. Don't forget to change all the lines in the config file of homebrige with the ESP6266's ip address.
-You wiil get errors if you don't change it. Once the change the file, save it and restart the server.
+You will get errors if you don't change it. Once you change the file, save it and restart the server.
 
 Now, if you open your home app you should see a new device name after the "name" property.
-The device can be control as a normal homekit device.
+The device can be controlled as a normal homekit device.
 
 ![](HomeApp.png)
 
