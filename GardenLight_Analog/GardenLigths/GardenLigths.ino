@@ -7,13 +7,14 @@
 WiFiServer server(80); //Set server port
 
 String readString;//String to hold incoming request
-String hexString = "000000",BrightString; //Define inititial color here (hex value)
+String hexString = "FF2F20",BrightString = "100"; //Define inititial color here (hex value) and brightness
 
 int state;
 
-int r, g, b, x, V;
+int r, g, b, x;
 
 float brightnessActual = 1;
+bool BrightChange = false;
 
 struct rgb
 {
@@ -27,8 +28,8 @@ rgb StateNext;
 rgb StateMessge;
 
 ///// WiFi SETTINGS - Replace with your values /////////////////
-const char* ssid = "dlink-8842";
-const char* password = "vgxht89347";
+const char* ssid = "XXXXXXX";
+const char* password = "YYYYYYY";
 IPAddress ip(192, 168, 0, 104);   // set a fixed IP for the NodeMCU
 IPAddress gateway(192, 168, 0, 1); // Your router IP
 IPAddress subnet(255, 255, 255, 0); // Subnet mask
@@ -83,9 +84,9 @@ void setHex()
 void setHex(String brightnessString) 
 {
   state = 1;
-  float brightness = 0;
-  brightness = (float)brightnessString.toInt() / 100;
+  float brightness = (float)brightnessString.toInt() / 100;
   brightnessActual = brightness;
+  BrightChange =!BrightChange;
 
   SetColor();
 }
@@ -96,11 +97,22 @@ void SetColor()
   r = number >> 16;
   g = number >> 8 & 0xFF;
   b = number & 0xFF;
-  StateMessge.r = map(r,0,255,0,1023) * brightnessActual;
-  StateMessge.g = map(g,0,255,0,1023) * brightnessActual;
-  StateMessge.b = map(b,0,255,0,1023) * brightnessActual;
+  if(BrightChange)
+  {
+    StateMessge.r = map(r,0,255,0,1023) * brightnessActual;
+    StateMessge.g = map(g,0,255,0,1023) * brightnessActual;
+    StateMessge.b = map(b,0,255,0,1023) * brightnessActual;
+    BrightChange = !BrightChange;
+  }
+  else
+  {
+    StateMessge.r = map(r,0,255,0,1023);
+    StateMessge.g = map(g,0,255,0,1023);
+    StateMessge.b = map(b,0,255,0,1023);
+  }
   
-  StateNext.r = StateMessge.r - StateActual.r; // if the result is negative, it will be ignore with analogùWrite().
+  
+  StateNext.r = StateMessge.r - StateActual.r;
   StateNext.g = StateMessge.g - StateActual.g;
   StateNext.b = StateMessge.b - StateActual.b;
   
@@ -109,11 +121,6 @@ void SetColor()
   StateActual.r = abs(StateMessge.r);
   StateActual.g = abs(StateMessge.g);
   StateActual.b = abs(StateMessge.b);
-}
-
-//send the actual brightness value
-void getV() {
-  V = brightnessActual * 100;
 }
 
 void setup() {
@@ -147,7 +154,6 @@ void loop() {
           if (readString.indexOf("on") > 0) {
             if(state != 1)
             {
-              hexString = "002F2F";
               setHex();
             }
           }
@@ -177,8 +183,7 @@ void loop() {
           }
           //Status brightness (%):
           if (readString.indexOf("bright") > 0) {
-            getV();
-            client.println(V);
+            client.println(BrightString);
           }
           delay(1);
           while (client.read() >= 0);  //added: clear remaining buffer to prevent ECONNRESET
