@@ -7,11 +7,11 @@
 WiFiServer server(80); //Set server port
 
 String readString;//String to hold incoming request
-String hexString = "FF2F20",BrightString = "100"; //Define inititial color here (hex value) and brightness
+String hexString = "2F2F20",BrightString = "100"; //Define inititial color here (hex value)
 
 int state;
 
-int r, g, b, x;
+int r, g, b, x, V;
 
 float brightnessActual = 1;
 bool BrightChange = false;
@@ -84,9 +84,9 @@ void setHex()
 void setHex(String brightnessString) 
 {
   state = 1;
-  float brightness = (float)brightnessString.toInt() / 100;
+  float brightness = 0;
+  brightness = (float)brightnessString.toInt() / 100;
   brightnessActual = brightness;
-  BrightChange =!BrightChange;
 
   SetColor();
 }
@@ -111,8 +111,7 @@ void SetColor()
     StateMessge.b = map(b,0,255,0,1023);
   }
   
-  
-  StateNext.r = StateMessge.r - StateActual.r;
+  StateNext.r = StateMessge.r - StateActual.r; // if the result is negative, it will be ignore with analogùWrite().
   StateNext.g = StateMessge.g - StateActual.g;
   StateNext.b = StateMessge.b - StateActual.b;
   
@@ -121,6 +120,11 @@ void SetColor()
   StateActual.r = abs(StateMessge.r);
   StateActual.g = abs(StateMessge.g);
   StateActual.b = abs(StateMessge.b);
+}
+
+//send the actual brightness value
+void getV() {
+  V = brightnessActual * 100;
 }
 
 void setup() {
@@ -183,7 +187,8 @@ void loop() {
           }
           //Status brightness (%):
           if (readString.indexOf("bright") > 0) {
-            client.println(BrightString);
+            getV();
+            client.println(V);
           }
           delay(1);
           while (client.read() >= 0);  //added: clear remaining buffer to prevent ECONNRESET

@@ -108,6 +108,8 @@ The device can be controlled as a normal homekit device.
 
 ## Release History
 
+* 1.0.1
+    * Fix for the initial color and brightness adjustment
 * 1.0.0
     * First release
 
