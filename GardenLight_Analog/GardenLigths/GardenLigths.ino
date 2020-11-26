@@ -115,6 +115,7 @@ void SetColorB(float bright)
   StateActual.r = abs(StateMessge.r);
   StateActual.g = abs(StateMessge.g);
   StateActual.b = abs(StateMessge.b);
+  hexString = String((int)StateMessge.r,HEX) + String((int)StateMessge.g,HEX) + String((int)StateMessge.b,HEX);
 }
 
 void SetColor()
