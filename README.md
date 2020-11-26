@@ -56,8 +56,8 @@ To add a new RGB light accessory, you just add those lines of code right below t
             "service": "Light",
             "switch": {
                 "status": "http://ESP8266's ip/status",
-                "powerOn": "http://ESP8266's ip/on",
-                "powerOff": "http://ESP8266's ip/off"
+                "powerOn": "http://ESP8266's ip/Lon",
+                "powerOff": "http://ESP8266's ip/Loff"
             },
             "color": {
                 "status": "http://ESP8266's ip/color",
@@ -108,6 +108,8 @@ The device can be controlled as a normal homekit device.
 
 ## Release History
 
+* 1.0.2
+    * Fix for the setHex() for brightness adjustment
 * 1.0.1
     * Fix for the initial color and brightness adjustment
 * 1.0.0
